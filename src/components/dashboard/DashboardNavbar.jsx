@@ -5,11 +5,12 @@ import { FaAngleLeft } from "react-icons/fa6";
 const DashboardNavbar = ({ setIsSidebarOpen, isSidebarOpen }) => {
     return (
         <div className="h-16">
-            <nav className="py-3 px-4 flex justify-between items-center fixed top-0 left-0 w-full h-16 bg-base-100 shadow-lg">
+            <nav className="py-3 px-4 flex justify-between items-center fixed top-0 left-0 w-full h-16 bg-base-100 shadow z-20">
                 <div className='flex items-center gap-3'>
-                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className='md:hidden btn btn-neutral btn-square'>
+                    <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className='md:hidden flex items-center btn btn-sm btn-ghost gap-0'>
+                        <span>Menu</span>
                         <span className={`${isSidebarOpen && 'rotate-180'} duration-200 rounded-r`}>
-                            <FaAngleLeft size={23} />
+                            <FaAngleLeft size={15} />
                         </span>
                     </button>
                     <Link className="text-xl text-white font-semibold bg-gradient-to-r from-blue-600 to-rose-600 py-2 px-3 rounded-md" href="/">
