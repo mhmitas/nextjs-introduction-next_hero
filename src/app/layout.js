@@ -4,7 +4,10 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Next Hero",
+  title: {
+    default: "Next Hero",
+    template: 'Next Hero - %s'
+  },
   description: "mitas hero",
 };
 

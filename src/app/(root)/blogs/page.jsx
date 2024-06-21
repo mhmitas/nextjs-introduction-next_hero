@@ -4,9 +4,15 @@ import { fetchBlogs } from '@/services/blogApi';
 import Link from 'next/link';
 
 
+export const metadata = {
+    title: {
+        absolute: "Blogs"
+    },
+    description: "next blogs for heros",
+};
+
 const BlogPage = async () => {
     const blogs = await fetchBlogs()
-    console.log(blogs);
 
     return (
         <Container>
