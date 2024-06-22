@@ -57,6 +57,6 @@ const handler = NextAuth(authOption)
 export { handler as GET, handler as POST }
 
 const users = [
-    { id: '1', name: 'Mahim', email: 'mahimbabu@gmail.com', password: 'mahimbabu', type: 'user' },
-    { id: '2', name: 'Mitas', email: 'mitas@email.com', password: 'mahimbabu', type: 'admin' }
+    { id: '1', name: 'Mahim', email: 'mahimbabu@gmail.com', password: 'mahimbabu', type: 'user', image: 'https://picsum.photos/200/300' },
+    { id: '2', name: 'Mitas', email: 'mitas@email.com', password: 'mahimbabu', type: 'admin', image: 'https://picsum.photos/200/300' }
 ]
