@@ -5,3 +5,13 @@
 [data-theme="lightTheme"] .btn-primary {
     color: white;
 }
+
+@layer base {
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        @apply bg-gradient-to-r from-blue-600 to-rose-600 text-transparent bg-clip-text;
+    }
+}

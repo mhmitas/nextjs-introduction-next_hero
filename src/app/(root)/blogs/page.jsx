@@ -1,6 +1,7 @@
-import Btn from '@/components/Btn';
+import { authOption } from '@/app/api/auth/[...nextauth]/route';
 import Container from '@/components/common/Container';
 import { fetchBlogs } from '@/services/blogApi';
+import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 
 
@@ -13,6 +14,9 @@ export const metadata = {
 
 const BlogPage = async () => {
     const blogs = await fetchBlogs()
+
+    const session = await getServerSession(authOption)
+    console.log(session);
 
     return (
         <Container>
@@ -32,7 +36,7 @@ function BlogCard({ blog }) {
         <div className='border border-base-100 p-4 rounded-md flex flex-col justify-between shadow-lg bg-base-100'>
             <div>
                 <h3 className='text-xl'>{blog.title}</h3>
-                <h3 className='my-2'>{blog.body}</h3>
+                <p className='my-2'>{blog.body}</p>
             </div>
             <div className='mt-2 flex justify-end'>
                 <Link href={`/blogs/${blog.id}`}><button className='btn btn-secondary btn-sm '>Show detail</button></Link>

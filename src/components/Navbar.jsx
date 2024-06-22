@@ -1,11 +1,15 @@
 'use client';
 import Link from 'next/link';
 import React from 'react';
-import Btn from './Btn';
 import { usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 const Navbar = () => {
     const pathName = usePathname();
+
+    const session = useSession()
+    const { status } = session
+    console.log(session);
 
     const navLinks = [
         { name: 'About', href: '/about', type: 'public' },
@@ -31,9 +35,25 @@ const Navbar = () => {
                             </li>
                         ))}
                     </ul>
-                    <button className="border border-primary hover:bg-primary hover:text-white font-semibold py-1 px-2 rounded">
-                        Sign In
-                    </button>
+                    {
+                        status === 'loading' &&
+                        <span>Loading...</span>
+                    }
+                    {
+                        status === 'authenticated' &&
+                        <>
+                            <span>{session?.data?.user?.email}</span>
+                            {/* <button className="btn btn-sm btn-secondary">
+                                Logout
+                            </button> */}
+                        </>
+                    }
+                    {
+                        status === 'unauthenticated' &&
+                        <Link href={'http://localhost:3000/api/auth/signin'}><button className="btn btn-sm btn-primary">
+                            Sign In
+                        </button></Link>
+                    }
                 </div>
             </div>
         </nav>

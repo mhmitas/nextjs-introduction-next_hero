@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { FaAngleLeft } from "react-icons/fa6";
+import { FaAngleLeft, FaBell } from "react-icons/fa6";
 
 const DashboardNavbar = ({ setIsSidebarOpen, isSidebarOpen }) => {
     return (
@@ -18,6 +18,9 @@ const DashboardNavbar = ({ setIsSidebarOpen, isSidebarOpen }) => {
                     </Link>
                 </div>
                 <div className="flex gap-2 items-center">
+                    <button className='btn btn-ghost btn-sm btn-circle text-warning'>
+                        <FaBell size={20} />
+                    </button>
                     <a href="#" className="btn btn-sm btn-ghost p-2 rounded">Logout</a>
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
