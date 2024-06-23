@@ -21,7 +21,7 @@ const Navbar = () => {
     return (
         <nav className="w-full shadow-md bg-base-100">
             <div className="mx-auto flex items-center justify-between py-3 px-4">
-                <Link className="text-xl text-white font-semibold bg-gradient-to-r from-blue-600 to-rose-600 py-2 px-3 rounded-md" href="/">
+                <Link className="text-xl text-white font-bold bg-gradient-to-r from-blue-600 to-rose-600 py-2 px-3 rounded-md" href="/">
                     Next Hero
                 </Link>
                 <div className="flex items-center space-x-4">
@@ -66,9 +66,14 @@ const Navbar = () => {
                     }
                     {
                         status === 'unauthenticated' &&
-                        <Link href={'http://localhost:3000/api/auth/signin'}><button className="btn btn-sm btn-primary">
-                            Sign In
-                        </button></Link>
+                        <>
+                            <Link href={'/api/auth/signin'}><button className="btn btn-sm btn-primary">
+                                Sign In
+                            </button></Link>
+                            <Link href={'/api/auth/signup'}><button className="btn btn-sm btn-primary">
+                                Sign Up
+                            </button></Link>
+                        </>
                     }
                 </div>
             </div>

@@ -1,8 +1,14 @@
+'use client'
+import { signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { FaAngleLeft, FaBell } from "react-icons/fa6";
 
 const DashboardNavbar = ({ setIsSidebarOpen, isSidebarOpen }) => {
+    const session = useSession()
+    console.log(session);
+
     return (
         <div className="h-16">
             <nav className="py-3 px-4 flex justify-between items-center fixed top-0 left-0 w-full h-16 bg-base-100 shadow z-20">
@@ -21,12 +27,17 @@ const DashboardNavbar = ({ setIsSidebarOpen, isSidebarOpen }) => {
                     <button className='btn btn-ghost btn-sm btn-circle text-warning'>
                         <FaBell size={20} />
                     </button>
-                    <a href="#" className="btn btn-sm btn-ghost p-2 rounded">Logout</a>
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                        </div>
-                    </div>
+                    {session.status === 'loading' && <span>Loading...</span>}
+                    {session.status === 'authenticated' &&
+                        <>
+                            <button onClick={signOut} className="btn btn-sm btn-ghost p-2 rounded">Logout</button>
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <Image width={40} height={40} alt="Tailwind CSS Navbar component" src={session?.data?.user?.image} />
+                                </div>
+                            </div>
+                        </>
+                    }
                 </div>
             </nav>
         </div>

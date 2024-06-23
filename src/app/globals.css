@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+[data-theme="darkTheme"] .btn-primary {
+    @apply text-white bg-gradient-to-tr from-blue-500 to-rose-500 border-none active:scale-100
+}
+
 [data-theme="lightTheme"] .btn-primary {
     color: white;
 }

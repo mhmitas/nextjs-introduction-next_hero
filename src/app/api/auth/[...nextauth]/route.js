@@ -1,5 +1,11 @@
+import connectDB from "@/lib/connectDB"
 import NextAuth from "next-auth/next"
 import CredentialsProvider from "next-auth/providers/credentials"
+import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
+import GitHubProvider from "next-auth/providers/github";
+
+
 
 export const authOption = {
     secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
@@ -30,7 +36,10 @@ export const authOption = {
                     return null
                 }
                 if (email) {
-                    const currentUser = users.find(user => user?.email === email)
+                    const db = await connectDB()
+                    const userColl = db.collection('users')
+                    const currentUser = await userColl.findOne({ email: email })
+                    console.log({ currentUser });
                     if (currentUser && currentUser.password === password) {
                         return currentUser
                     }
@@ -38,6 +47,18 @@ export const authOption = {
                 return null
             }
         }),
+        GoogleProvider({
+            clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+            clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET
+        }),
+        FacebookProvider({
+            clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID,
+            clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET
+        }),
+        GitHubProvider({
+            clientId: process.env.NEXT_PUBLIC_GITHUB_ID,
+            clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET
+        })
     ],
     callbacks: {
         async jwt({ token, account, user }) {
@@ -55,8 +76,3 @@ export const authOption = {
 const handler = NextAuth(authOption)
 
 export { handler as GET, handler as POST }
-
-const users = [
-    { id: '1', name: 'Mahim', email: 'mahimbabu@gmail.com', password: 'mahimbabu', type: 'user', image: 'https://picsum.photos/200/300' },
-    { id: '2', name: 'Mitas', email: 'mitas@email.com', password: 'mahimbabu', type: 'admin', image: 'https://picsum.photos/200/300' }
-]

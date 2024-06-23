@@ -4,7 +4,7 @@ const Hero = () => {
     return (
         <header>
             <div className='w-full'>
-                <div className="h-[550px] flex flex-col justify-center items-center w-full shadow-lg dark:shadow-blue-500/15">
+                <div className="h-[550px] flex flex-col justify-center items-center w-full shadow-lg dark:shadow-rose-500/15">
                     <h1 className="text-5xl font-bold mb-4 text-center">
                         Welcome to Our Website
                     </h1>
@@ -13,7 +13,7 @@ const Hero = () => {
                     </p>
                     <div className='flex gap-2'>
                         <button className='btn btn-primary'>Contact Us</button>
-                        <button className='btn btn-info'>Learn More</button>
+                        <button className='btn btn-primary'>Learn More</button>
                     </div>
                 </div>
             </div>
